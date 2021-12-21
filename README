@@ -1,0 +1,66 @@
+************************** README **************************
+Name: Andrew DelMastro
+UTLN: adelma02
+Date: 12/20/2021
+Cour: COMP 163
+******************* Project Descriptions *******************
+
+A line sweep algorithm that can be augmented to preform additional functions.
+
+usage: aug_line_sweep.py [-h] [-m] [-l L]
+
+An augmented line sweep algorithm
+
+optional arguments:
+  -h, --help  show this help message and exit
+  -m          manual mode
+  -l L        num_lines
+
+Files:
+    README: this file
+    line.py: defines the line class
+    aug_line_sweep.py: defines the class, and an additional sample execution
+    aug_functs.py: defines augmentation functions to help run the algo
+    out.gif: the output of the animation
+
+The test file has been set up to find the minimum area triangle, but the class
+created in the file allows for augmentations.
+
+Line Class:
+    It is not really a class, its just the representation of a line in my
+        program. A line is stored as a tuple of the slope and intercept. This
+        allows for it to have the same representation in both the primal and
+        the dual.
+    Important Functions:
+        - line          = A fake constructor
+        - y             = returns where the line would be at a given x-coord
+        - find_inter    = Takes two lines and returns the point of intersection
+        - sample_arrange= An example list of lines for testing purposes
+
+Line Sweep Class:
+    Params:
+        - lines     = A list of lines to sweep over
+        - update    = The function to call at each update step
+        - init_aug  = The function to initialize the status augments
+        - report    = The function to call at the end
+        - aug_print = The function to print the augmented data
+        - extra     = The initial value for the extra storage space
+    Important Functions:
+        Initialization methods:
+            - __init__      = The constructor the class
+            - init_status   = For the status data structure 
+            - init_heap     = For the heap data structure 
+        The different methods to run the line sweep described below:
+            - run
+            - iter_run_auto
+            - iter_run
+
+In order to run base line sweep, only lines needs to be provided. However, to 
+    run an augmented version, all the other augments need to be provided. The 
+    class provides three different running functions. run will perform the
+    whole lines sweep at once, and call the report function at the end. 
+    iter_run_auto, will perform one step of the line_sweep, while the iter_run
+    will do the same, but require user input to progress. These last two can
+    be used in combination with the FuncAnimation portion of matplotlib to 
+    create animations, and require the declaration of a points and vert axis
+    to print the current heap and position of the line sweep to. 
